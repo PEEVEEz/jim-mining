@@ -5,7 +5,7 @@ print("^2Jim-Mining ^7v^4" ..
 Loc = {}
 
 Config = {
-	Debug = true,   -- enable debug mode
+	Debug = false,  -- enable debug mode
 
 	Lan = "en",     -- Pick your language here
 
