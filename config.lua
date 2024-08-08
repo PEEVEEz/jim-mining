@@ -9,8 +9,6 @@ Config = {
 
 	Lan = "en",     -- Pick your language here
 
-	JimShops = false, -- Set this to true if using jim-shops
-
 	DrillSound = true, -- disable drill sounds
 
 	MultiCraft = true, -- Enable multicraft
@@ -147,6 +145,7 @@ Config = {
 		},
 	},
 }
+
 Crafting = {
 	SmeltMenu = {
 		{ ["copper"] = { ["copperore"] = 1 },             ['amount'] = 4 },

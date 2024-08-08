@@ -1,4 +1,4 @@
-local time = 1000
+local time = 2500 -- 2.5s
 
 function loadModel(model)
 	if not HasModelLoaded(model) then
