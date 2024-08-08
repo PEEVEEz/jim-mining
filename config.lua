@@ -1,28 +1,24 @@
-print("^2Jim-Mining ^7v^4"..GetResourceMetadata(GetCurrentResourceName(), 'version', nil):gsub("%.", "^7.^4").."^7 - ^2Mining Script by ^1Jimathy^7")
+print("^2Jim-Mining ^7v^4" ..
+	GetResourceMetadata(GetCurrentResourceName(), 'version', 0):gsub("%.", "^7.^4") ..
+	"^7 - ^2Mining Script by ^1Jimathy^7")
 
 Loc = {}
 
 Config = {
-	Debug = false, -- enable debug mode
-	img = "qb-inventory/html/images/", --Set this to the image directory of your inventory script or "nil" if using newer qb-menu
+	Debug = true,   -- enable debug mode
 
-	Lan = "en", -- Pick your language here
+	Lan = "en",     -- Pick your language here
 
-	JimShops = false, 		-- Set this to true if using jim-shops
+	JimShops = false, -- Set this to true if using jim-shops
 
-	Inv = "qb",				--"qb" or "ox"
-	Menu = "qb",			--"qb" or "ox"
-	ProgressBar = "qb",		--"qb" or "ox"
-	Notify = "qb",			--"qb" or "ox"
+	DrillSound = true, -- disable drill sounds
 
-	DrillSound = true,		-- disable drill sounds
-
-	MultiCraft = true,		-- Enable multicraft
-	MultiCraftAmounts = { [1], [5], [10] },
+	MultiCraft = true, -- Enable multicraft
+	MultiCraftAmounts = { [1] = true, [5] = true, [10] = true },
 
 	K4MB1Prop = false, -- Enable this to make use of K4MB1's ore props provided with their Mining Cave MLO
 
-	Timings = { -- Time it takes to do things
+	Timings = {     -- Time it takes to do things
 		["Cracking"] = math.random(5000, 10000),
 		["Washing"] = math.random(10000, 12000),
 		["Panning"] = math.random(25000, 30000),
@@ -40,7 +36,7 @@ Config = {
 		"metalscrap",
 	},
 
-	WashPool = {	-- Rewards from washing stone
+	WashPool = { -- Rewards from washing stone
 		"goldore",
 		"uncut_ruby",
 		"uncut_emerald",
@@ -49,7 +45,7 @@ Config = {
 		"goldore",
 	},
 
-	PanPool = {		-- Rewards from panning
+	PanPool = { -- Rewards from panning
 		"can",
 		"goldore",
 		"can",
@@ -68,7 +64,7 @@ Config = {
 		"bottle",
 	},
 
-------------------------------------------------------------
+	------------------------------------------------------------
 	OreSell = { -- List of ores you can sell to the buyer npc
 		"goldingot",
 		"silveringot",
@@ -134,26 +130,26 @@ Config = {
 		['silverearring'] = 100,
 
 	},
-------------------------------------------------------------
---Mining Store Items
+	------------------------------------------------------------
+	--Mining Store Items
 	Items = {
-		label = "Mining Store",  slots = 9,
+		label = "Mining Store",
+		slots = 9,
 		items = {
-			{ name = "water_bottle", price = 0, amount = 100, info = {}, type = "item", slot = 1, },
-			{ name = "sandwich", price = 0, amount = 250, info = {}, type = "item", slot = 2, },
-			{ name = "bandage", price = 0, amount = 100, info = {}, type = "item", slot = 3, },
-			{ name = "weapon_flashlight", price = 0, amount = 100, info = {}, type = "item", slot = 4, },
-			{ name = "goldpan", price = 0, amount = 100, info = {}, type = "item", slot = 5, },
-			{ name = "pickaxe",	price = 100, amount = 100, info = {}, type = "item", slot = 6, },
-			{ name = "miningdrill",	price = 10000, amount = 50, info = {}, type = "item", slot = 7, },
-			{ name = "mininglaser",	price = 60000, amount = 5, info = {}, type = "item", slot = 8, },
-			{ name = "drillbit", price = 0, amount = 100, info = {}, type = "item", slot = 9, },
+			{ name = "water",       price = 0,     amount = 100, info = {}, type = "item", slot = 1, },
+			{ name = "bread",       price = 0,     amount = 250, info = {}, type = "item", slot = 2, },
+			{ name = "bandage",     price = 0,     amount = 100, info = {}, type = "item", slot = 3, },
+			{ name = "goldpan",     price = 0,     amount = 100, info = {}, type = "item", slot = 5, },
+			{ name = "pickaxe",     price = 100,   amount = 100, info = {}, type = "item", slot = 6, },
+			{ name = "miningdrill", price = 10000, amount = 50,  info = {}, type = "item", slot = 7, },
+			{ name = "mininglaser", price = 60000, amount = 5,   info = {}, type = "item", slot = 8, },
+			{ name = "drillbit",    price = 0,     amount = 100, info = {}, type = "item", slot = 9, },
 		},
 	},
 }
 Crafting = {
 	SmeltMenu = {
-		{ ["copper"] = { ["copperore"] = 1 }, ['amount'] = 4 },
+		{ ["copper"] = { ["copperore"] = 1 },             ['amount'] = 4 },
 		{ ["goldingot"] = { ["goldore"] = 1 } },
 		{ ["goldingot"] = { ["goldchain"] = 3 } },
 		{ ["goldingot"] = { ["gold_ring"] = 4 } },
@@ -162,18 +158,18 @@ Crafting = {
 		{ ["silveringot"] = { ["silver_ring"] = 4 } },
 		{ ["iron"] = { ["ironore"] = 1 } },
 		{ ["steel"] = { ["ironore"] = 1, ["carbon"] = 1 } },
-		{ ["aluminum"] = { ["can"] = 2, }, ['amount'] = 3 },
-		{ ["glass"] = { ["bottle"] = 2, }, ['amount'] = 2 },
+		{ ["aluminum"] = { ["can"] = 2, },                ['amount'] = 3 },
+		{ ["glass"] = { ["bottle"] = 2, },                ['amount'] = 2 },
 	},
 	GemCut = {
 		{ ["emerald"] = { ["uncut_emerald"] = 1, } },
-		{ ["diamond"] = { ["uncut_diamond"] = 1}, },
+		{ ["diamond"] = { ["uncut_diamond"] = 1 }, },
 		{ ["ruby"] = { ["uncut_ruby"] = 1 }, },
 		{ ["sapphire"] = { ["uncut_sapphire"] = 1 }, },
 	},
 	RingCut = {
-		{ ["gold_ring"] = { ["goldingot"] = 1 }, ['amount'] = 3 },
-		{ ["silver_ring"] = { ["silveringot"] = 1 }, ['amount'] = 3 },
+		{ ["gold_ring"] = { ["goldingot"] = 1 },                                ['amount'] = 3 },
+		{ ["silver_ring"] = { ["silveringot"] = 1 },                            ['amount'] = 3 },
 		{ ["diamond_ring"] = { ["gold_ring"] = 1, ["diamond"] = 1 }, },
 		{ ["emerald_ring"] = { ["gold_ring"] = 1, ["emerald"] = 1 }, },
 		{ ["ruby_ring"] = { ["gold_ring"] = 1, ["ruby"] = 1 }, },
@@ -185,8 +181,8 @@ Crafting = {
 		{ ["sapphire_ring_silver"] = { ["silver_ring"] = 1, ["sapphire"] = 1 }, },
 	},
 	NeckCut = {
-		{ ["goldchain"] = { ["goldingot"] = 1 }, ['amount'] = 3  },
-		{ ["silverchain"] = { ["silveringot"] = 1 }, ['amount'] = 3  },
+		{ ["goldchain"] = { ["goldingot"] = 1 },                                    ['amount'] = 3 },
+		{ ["silverchain"] = { ["silveringot"] = 1 },                                ['amount'] = 3 },
 		{ ["diamond_necklace"] = { ["goldchain"] = 1, ["diamond"] = 1 }, },
 		{ ["ruby_necklace"] = { ["goldchain"] = 1, ["ruby"] = 1 }, },
 		{ ["sapphire_necklace"] = { ["goldchain"] = 1, ["sapphire"] = 1 }, },
@@ -198,8 +194,8 @@ Crafting = {
 		{ ["emerald_necklace_silver"] = { ["silverchain"] = 1, ["emerald"] = 1 }, },
 	},
 	EarCut = {
-		{ ["goldearring"] = { ["goldingot"] = 1 }, ['amount'] = 3  },
-		{ ["silverearring"] = { ["silveringot"] = 1 }, ['amount'] = 3  },
+		{ ["goldearring"] = { ["goldingot"] = 1 },                                   ['amount'] = 3 },
+		{ ["silverearring"] = { ["silveringot"] = 1 },                               ['amount'] = 3 },
 		{ ["diamond_earring"] = { ["goldearring"] = 1, ["diamond"] = 1 }, },
 		{ ["ruby_earring"] = { ["goldearring"] = 1, ["ruby"] = 1 }, },
 		{ ["sapphire_earring"] = { ["goldearring"] = 1, ["sapphire"] = 1 }, },
